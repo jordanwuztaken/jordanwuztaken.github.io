@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jordanwuztaken | Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #ffffff;
+            --on-bg: #000000;
+            --surface: #f7f7f7;
+            --outline: #888888;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #000000;
+            --on-bg: #ffffff;
+            --surface: #111111;
+            --outline: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--on-bg);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
+            transition: background-color var(--transition), color var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Neko Attribution Styling */
+        #nl {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            opacity: 0.3;
+            z-index: 10;
+        }
+        #nl a { color: var(--outline); text-decoration: none; }
+
+        .container { max-width: 600px; width: 100%; position: relative; z-index: 1; }
+
+        header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .profile-side { display: flex; align-items: center; gap: 20px; }
+
+        .pfp {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            filter: grayscale(100%);
+            border: 1px solid var(--outline);
+        }
+
+        .header-text h1 { font-size: 1.6rem; margin: 0; font-weight: 700; letter-spacing: -0.03em; }
+        
+        .sub-header {
+            display: flex;
+            align-items: center; gap: 8px; margin: 4px 0;
+        }
+
+        .pronouns {
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 2px 6px; border: 1px solid var(--outline); border-radius: 4px; color: var(--outline);
+        }
+
+        .tagline { color: var(--outline); margin: 0; font-size: 0.85rem; }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mail-link {
+            color: var(--on-bg);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .mail-link:hover {
+            opacity: 0.7;
+            transform: translateY(-1px);
+        }
+
+        .clock-container { text-align: right; font-family: monospace; color: var(--outline); }
+        #time { font-size: 0.9rem; font-weight: 700; color: var(--on-bg); display: block; }
+        #tzone { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3rem; }
+        .badges img { height: 20px; filter: grayscale(100%); transition: filter 0.3s; }
+        .badges img:hover { filter: grayscale(0%); }
+
+        section { margin-bottom: 3rem; }
+        h2 { 
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; 
+            color: var(--outline); margin-bottom: 1.2rem; border-bottom: 1px solid var(--surface); padding-bottom: 8px;
+        }
+
+        .cube-viewport {
+            width: 100%; height: 180px; display: flex; align-items: center; justify-content: center;
+            perspective: 800px; background: var(--surface); border-radius: 16px; margin-bottom: 12px;
+        }
+        .cube {
+            width: 60px; height: 60px; position: relative; transform-style: preserve-3d;
+            animation: rotateCube 12s infinite linear;
+        }
+        .face {
+            position: absolute; width: 60px; height: 60px; border: 1px solid var(--on-bg);
+            background: rgba(128, 128, 128, 0.05);
+        }
+        .front  { transform: translateZ(30px); }
+        .back   { transform: rotateY(180deg) translateZ(30px); }
+        .right  { transform: rotateY(90deg) translateZ(30px); }
+        .left   { transform: rotateY(-90deg) translateZ(30px); }
+        .top    { transform: rotateX(90deg) translateZ(30px); }
+        .bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .lab-frame {
+            width: 100%; height: 200px; border-radius: 16px; border: 1px solid var(--outline);
+            filter: grayscale(1); transition: filter 0.5s ease;
+        }
+        .lab-frame:hover { filter: grayscale(0); }
+
+        .repo-grid { display: grid; gap: 12px; }
+        .project-card {
+            background: var(--surface); padding: 1.2rem; border-radius: 12px;
+            text-decoration: none; color: inherit; display: block; transition: all var(--transition);
+        }
+        .project-card:hover { background: var(--on-bg); color: var(--bg); transform: translateX(4px); }
+        .project-card b { font-size: 0.95rem; display: block; margin-bottom: 4px; }
+        .project-card p { font-size: 0.8rem; opacity: 0.7; margin: 0; }
+
+        .allies-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .ally-card {
+            display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;
+            background: var(--surface); padding: 8px 12px; border-radius: 12px; transition: all var(--transition);
+        }
+        .ally-pfp { width: 28px; height: 28px; border-radius: 6px; filter: grayscale(100%); }
+
+        .verse-container {
+            margin-top: 5rem; text-align: center; padding: 2rem; border-top: 1px solid var(--surface);
+        }
+        .verse-text { font-style: italic; font-size: 0.9rem; color: var(--on-bg); margin-bottom: 8px; display: block; }
+        .verse-ref { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--outline); }
+
+        .theme-toggle {
+            position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; border-radius: 14px;
+            background: var(--on-bg); color: var(--bg); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <script>NekoType="fancy"</script>
+    <h1 id="nl"><script src="https://webneko.net/n20171213.js"></script><a href="https://webneko.net">Neko</a></h1>
+
+    <div class="container">
+        <header>
+            <div class="profile-side">
+                <img src="https://github.com/jordanwuztaken.png" alt="jordanwuztaken" class="pfp">
+                <div class="header-text">
+                    <h1>jordanwuztaken</h1>
+                    <div class="sub-header">
+                        <span class="tagline">UraniumNet</span>
+                        <span class="pronouns">they/them</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="mailto:jordanwuz.tkn@gmail.com" class="mail-link" title="Contact Me">
+                    <span class="material-symbols-rounded">mail</span>
+                </a>
+                <div class="clock-container">
+                    <span id="time">00:00:00</span>
+                    <span id="tzone">UTC</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="badges">
+            <img src="https://img.shields.io/badge/HTML5-000000?style=flat-square&logo=html5&logoColor=white" alt="HTML">
+            <img src="https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white" alt="macOS">
+            <img src="https://img.shields.io/badge/JavaScript-000000?style=flat-square&logo=javascript" alt="JS">
+            <img src="https://img.shields.io/badge/Go-000000?style=flat-square&logo=go" alt="Go">
+        </div>
+
+        <section>
+            <h2>UraniumNet Projects</h2>
+            <div id="uranium-repos" class="repo-grid"></div>
+        </section>
+
+        <section>
+            <h2>Personal Repositories</h2>
+            <div id="personal-repos" class="repo-grid"></div>
+        </section>
+
+        <section>
+            <h2>Experimental Lab</h2>
+            <div class="cube-viewport">
+                <div class="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+            <iframe class="lab-frame" src="https://musiclab.chromeexperiments.com/Song-Maker/embed/6165359731802112" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+        <section>
+            <h2>Allies</h2>
+            <div class="allies-list">
+                <a href="https://github.com/NoseyGames" class="ally-card" target="_blank">
+                    <img src="https://github.com/NoseyGames.png" class="ally-pfp" alt="NoseyGames">
+                    <span>NoseyGames</span>
+                </a>
+                <a href="https://github.com/wvalid19" class="ally-card" target="_blank">
+                    <img src="https://github.com/wvalid19.png" class="ally-pfp" alt="wvalid19">
+                    <span>wvalid19</span>
+                </a>
+                <a href="https://github.com/sprintingsnail69" class="ally-card" target="_blank">
+                    <img src="https://github.com/sprintingsnail69.png" class="ally-pfp" alt="sprintingsnail69">
+                    <span>sprintingsnail69</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="verse-container">
+            <span class="verse-text">"Where the Spirit of the Lord is, there is freedom."</span>
+            <span class="verse-ref">2 Corinthians 3:17</span>
+        </div>
+
+        <footer style="margin-top: 2rem; padding-bottom: 4rem; font-size: 0.7rem; color: var(--outline); text-align: center;">
+            &copy; 2026 // JORDANWUZTAKEN
+        </footer>
+    </div>
+
+    <button class="theme-toggle" id="themeBtn">
+        <span class="material-symbols-rounded" id="themeIcon">light_mode</span>
+    </button>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour12: false });
+            const tzStr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById('time').textContent = timeStr;
+            document.getElementById('tzone').textContent = tzStr.split('/')[1] || tzStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+        themeBtn.addEventListener('click', () => {
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeIcon').innerText = isDark ? 'dark_mode' : 'light_mode';
+        });
+
+        async function loadRepos(url, containerId) {
+            const container = document.getElementById(containerId);
+            try {
+                const response = await fetch(url);
+                const repos = await response.json();
+                container.innerHTML = '';
+                repos.filter(r => !r.fork).slice(0, 4).forEach(repo => {
+                    const card = document.createElement('a');
+                    card.className = 'project-card';
+                    card.href = repo.html_url;
+                    card.target = '_blank';
+                    card.innerHTML = `<b>${repo.name}</b><p>${repo.description || 'Public project under UraniumNet.'}</p>`;
+                    container.appendChild(card);
+                });
+            } catch (e) { container.innerHTML = '<p>Error loading repositories.</p>'; }
+        }
+
+        loadRepos('https://api.github.com/orgs/uraniumnet/repos?sort=updated', 'uranium-repos');
+        loadRepos('https://api.github.com/users/jordanwuztaken/repos?sort=updated', 'personal-repos');
+    </script>
+</body>
+</html>
